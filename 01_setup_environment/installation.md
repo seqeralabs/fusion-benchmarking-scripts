@@ -185,7 +185,7 @@ $ seqerakit --info
 DEBUG:root: Running command: tw info
 Details
     -------------------------+----------------------
-     Tower API endpoint      | https://api.tower.nf
+     Tower API endpoint      | https://api.cloud.seqera.io
      Tower API version       | 1.23.0
      Tower version           | 23.3.0-cycle23
      CLI version             | 0.9.0 (0cea70d)

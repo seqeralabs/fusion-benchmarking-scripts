@@ -82,7 +82,7 @@ You can double-check the value of $DATASET_URL with the command below:
 echo $DATASET_URL
 
 # Example output:
-# https://api.tower.nf/workspaces/100452700310173/datasets/4f2d6orAHG5j7YY1DQtEzP/v/1/n/nf_aggregate_samplesheet.csv
+# https://api.cloud.seqera.io/workspaces/100452700310173/datasets/4f2d6orAHG5j7YY1DQtEzP/v/1/n/nf_aggregate_samplesheet.csv
 
 ```
 

@@ -4,7 +4,7 @@ pipelines:
       workspace: "$ORGANIZATION_NAME/$WORKSPACE_NAME"
       description: "seqeralabs/nf-aggregate is a Nextflow pipeline to aggregate pertinent metrics across pipeline runs on the Seqera Platform."
       compute-env: "${COMPUTE_ENV_PREFIX}_fusion_snapshots"
-      revision: "0.6.0"
+      revision: "0.7.0"
       config: "./pipelines/nextflow.config"
       params:                                           # Optional, specify params inline
         input: '$DATASET_URL'

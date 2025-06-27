@@ -1,5 +1,0 @@
-launch:
-  - name: "nf-hello-world-fusion-$TIME"
-    workspace: "$ORGANIZATION_NAME/$WORKSPACE_NAME"
-    compute-env: "$COMPUTE_ENV_PREFIX_fusion_nvme"
-    pipeline: "nf-hello-world-test"

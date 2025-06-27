@@ -1,8 +1,0 @@
-pipelines:
-  - name: "nf-hello-world-test"
-    url: "https://github.com/nextflow-io/hello"
-    workspace: '$ORGANIZATION_NAME/$WORKSPACE_NAME'
-    description: "Classic Hello World script in Nextflow language."
-    compute-env: "$COMPUTE_ENV_PREFIX_fusion_nvme"
-    revision: "master"
-    overwrite: True

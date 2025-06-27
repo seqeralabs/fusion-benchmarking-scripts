@@ -1,0 +1,7 @@
+launch:
+  - name: "nf-core-demo-plains3-$TIME"
+    workspace: "$ORGANIZATION_NAME/$WORKSPACE_NAME"
+    compute-env: "${COMPUTE_ENV_PREFIX}_plain_s3"
+    pipeline: "nf-core-demo"
+    params:
+      outdir: "${PIPELINE_OUTDIR_PREFIX}/nf-core-demo/plains3-results"

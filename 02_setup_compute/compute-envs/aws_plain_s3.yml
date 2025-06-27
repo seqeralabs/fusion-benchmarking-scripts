@@ -1,7 +1,7 @@
 compute-envs:
   - type: aws-batch
     config-mode: forge
-    name: "$COMPUTE_ENV_PREFIX_plain_s3"
+    name: "${COMPUTE_ENV_PREFIX}_plain_s3"
     workspace: "$ORGANIZATION_NAME/$WORKSPACE_NAME"
     credentials: "$AWS_CREDENTIALS"
     region: "$AWS_REGION"

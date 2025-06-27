@@ -1,0 +1,10 @@
+pipelines:
+  - name: "nf-core-demo"
+    url: "https://github.com/nf-core/demo"
+    workspace: '$ORGANIZATION_NAME/$WORKSPACE_NAME'
+    description: "nf-core/demo is a simple nf-core style bioinformatics pipeline for workshops and demos."
+    compute-env: "${COMPUTE_ENV_PREFIX}_fusion_nvme"
+    config: "./pipelines/nextflow.config"
+    profile: "$PIPELINE_PROFILE"
+    revision: "1.0.2"
+    overwrite: True

@@ -3,7 +3,7 @@
 ## Table of contents
 1. [Prerequisites](#prerequisites)
 2. [Overview](#overview)
-3. [Launching hello workflow from the Launchpad](#launching-hello-workflow-from-the-launchpad)
+3. [Launching nf-core/demo workflow from the Launchpad](#launching-nf-core-demo-workflow-from-the-launchpad)
 4. [Run benchmarks for the custom workflow](#run-benchmarks-for-the-custom-workflow)
    - [YAML format description](#yaml-format-description)
    - [Launching the custom workflow](#launching-the-custom-workflow)
@@ -13,40 +13,40 @@
 - You have setup a Fusion V2 and plain S3 compute environment in the Seqera Platform in the [previous section](../02_setup_compute/README.md).
 - You have created an S3 bucket for saving the workflow outputs.
 - You have created an S3 bucket containing the input samplesheet for the workflow or have uploaded the samplesheet to the [workspace as a Dataset](https://docs.seqera.io/platform/24.1/data/datasets).
-- You have setup your custom and hello world workflows on the Launchpad as described in the [previous section](../03_setup_pipelines/README.md).
+- You have setup your custom and nf-core/demo workflows on the Launchpad as described in the [previous section](../03_setup_pipelines/README.md).
 
 ### 2. Overview
 
 This directory contains YAML configuration files to launch the workflows on the Seqera Platform:
 
-- `hello_world_fusion.yml`: This configuration is to launch the hello world workflow on the Seqera Platform with the Fusion V2 compute environment.
-- `hello_world_plains3.yml`: This configuration is to launch the hello world workflow on the Seqera Platform with the plain S3 compute environment.
+- `nf-core-demo_fusion.yml`: This configuration is to launch the nf-core/demo workflow on the Seqera Platform with the Fusion V2 compute environment.
+- `nf-core-demo_plains3.yml`: This configuration is to launch the nf-core/demo workflow on the Seqera Platform with the plain S3 compute environment.
 - `example_workflow_A_fusion.yml`: This configuration is to launch the custom workflow on the Seqera Platform with the Fusion V2 compute environment.
 - `example_workflow_B_plains3.yml`: This configuration is to launch the custom workflow on the Seqera Platform with the plain S3 compute environment.
 
-We will launch the hello world workflow from the Launchpad to ensure that the Seqera Platform is working as expected with both the Fusion V2 and plain S3 compute environments before running the benchmarks for the custom workflow.
+We will launch the nf-core/demo workflow from the Launchpad to ensure that the Seqera Platform is working as expected with both the Fusion V2 and plain S3 compute environments before running the benchmarks for the custom workflow.
 
-## 3. Launching hello workflow from the Launchpad
+## 3. Launching nf-core/demo workflow from the Launchpad
 
-We have provided separate YAML files [`hello_world_fusion.yml`](../04_run_benchmarks/launch/hello-world-fusion.yml) and [`hello_world_plains3.yml`](../04_run_benchmarks/launch/hello-world-plains3.yml) that contain the appropriate configuration to launch the Hello World pipeline we just added to the Launchpad.
+We have provided separate YAML files [`nf-core-demo_fusion.yml`](../04_run_benchmarks/launch/nf-core-demo_fusion.yml) and [`nf-core-demo_plains3.yml`](../04_run_benchmarks/launch/nf-core-demo_plains3.yml) that contain the appropriate configuration to launch the Hello World pipeline we just added to the Launchpad.
 
 Theses YAML files will append the date through the `$TIME` variable set in `env.sh`.  onto the run names. This can help with better organizing your benchmarking runs, especially if you launch multiple iterations.
 
 Use the command below to launch the pipelines with both compute environments:
 
 ```shell
-seqerakit ./launch/hello_world*.yml
+seqerakit ./launch/nf-core-demo*.yml
 ```
 
 ```shell
-DEBUG:root: Running command: tw launch nf-hello-world-fusion-$TIME --name nf-hello-world-test --workspace $ORGANIZATION_NAME/$WORKSPACE_NAME
-DEBUG:root: Running command: tw launch nf-hello-world-plains3-$TIME --name nf-hello-world-test --workspace $ORGANIZATION_NAME/$WORKSPACE_NAME
+INFO:root: Running command: tw launch --name nf-core-demo-fusion-$TIME --workspace $ORGANIZATION_NAME/$WORKSPACE_NAME --compute-env ${COMPUTE_ENV_PREFIX}_fusion_nvme nf-core-demo
+INFO:root: Running command: tw launch --name nf-core-demo-plains3-$TIME --workspace $ORGANIZATION_NAME/$WORKSPACE_NAME --compute-env ${COMPUTE_ENV_PREFIX}_plain_s3 nf-core-demo
 ```
 
-When you check the running pipelines tab of your Seqera Platform workspace, you should now see the Hello World pipelines being submitted for execution.
+When you check the running pipelines tab of your Seqera Platform workspace, you should now see the nf-core/demo pipelines being submitted for execution.
 
 
-![Hello World launch](../docs/images/hello-world-pipelines-launch.png) 
+![nf-core/demo launch](../docs/images/nf-core-demo-pipelines-launch.png) 
 
 
 You may have to wait for the pipeline to begin executing and eventually complete. If you observe any failures, you will need to fix these systematically. If you don't, put your feet up and put the kettle on before moving on to the next step to run the benchmarks.

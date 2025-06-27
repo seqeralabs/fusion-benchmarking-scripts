@@ -1,7 +1,7 @@
 compute-envs:
   - type: aws-batch
     config-mode: forge
-    name: "$COMPUTE_ENV_PREFIX_fusion_nvme"
+    name: "${COMPUTE_ENV_PREFIX}_fusion_nvme"
     workspace: "$ORGANIZATION_NAME/$WORKSPACE_NAME"
     credentials: "$AWS_CREDENTIALS"
     region: "$AWS_REGION"
@@ -14,6 +14,6 @@ compute-envs:
     instance-types: "c6id,m6id,r6id"
     max-cpus: 1000
     allow-buckets: "$AWS_COMPUTE_ENV_ALLOWED_BUCKETS"
-    labels: storage=fusionv2,project=benchmarking"
+    labels: "storage=fusionv2,project=benchmarking"
     wait: "AVAILABLE"
     overwrite: False

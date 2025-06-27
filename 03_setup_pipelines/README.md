@@ -21,19 +21,19 @@
 
 ### 2. Overview
 
-This directory contains YAML configuration files to add your workflow to the Seqera Platform Launchpad, as well as add the [nextflow-io/hello](https://github.com/nextflow-io/hello) workflow to the Seqera Platform Launchpad:
+This directory contains YAML configuration files to add your workflow to the Seqera Platform Launchpad, as well as add the [nf-core/demo](https://github.com/nf-core/demo) workflow to the Seqera Platform Launchpad:
 
 - `example_workflow_A_fusion.yml`: This configuration is to setup your custom workflow for benchmarking to run on Fusion V2 with the 6th generation intel instance type with NVMe storage. This workflow will use the `aws_fusion_nvme` compute environment created in the [previous section](../02_setup_compute/README.md#1-fusion-enabled-compute-environment).
 - `example_workflow_A_plains3.yml`: This configuration is to setup your custom workflow for benchmarking to run on plain AWS Batch with S3 storage. This workflow will use the `aws_plain_s3` compute environment created in the [previous section](../02_setup_compute/README.md#2-plain-s3-compute-environment).
-- `hello-world.yml`: This configuration is to setup the [nextflow-io/hello](https://github.com/nextflow-io/hello) workflow to run on the Seqera Platform. This workflow will use the `aws_fusion_nvme` compute environment created in the [previous section](../02_setup_compute/README.md#1-fusion-enabled-compute-environment).
+- `nf-core-demo.yml`: This configuration is to setup the [nf-core/demo](https://github.com/nf-core/demo) workflow to run on the Seqera Platform. This workflow will use the `aws_fusion_nvme` compute environment created in the [previous section](../02_setup_compute/README.md#1-fusion-enabled-compute-environment).
 
 > **Note:** You can benchmark multiple workflows by copying and modifying these example configuration files. Simply create new YAML files for each workflow you want to test, adjusting the relevant parameters as needed.
 
-We can start by adding a simple Hello World pipeline to the Launchpad and then launching this in your chosen Workspace. This will ensure that `seqerakit` is working as expected and you are able to correctly add and launch a pipeline.
+We can start by adding a simple nf-core/demo pipeline to the Launchpad and then launching this in your chosen Workspace. This will ensure that `seqerakit` is working as expected and you are able to correctly add and launch a pipeline.
 
 ### 3. Tutorial: Adding a test pipeline to the Launchpad
 
-Before we add our custom workflow to the Launchpad, let's start by adding the Hello World pipeline to the Launchpad as defined in [`hello-world.yml`](../seqerakit/pipelines/hello-world.yml).
+Before we add our custom workflow to the Launchpad, let's start by adding the nf-core/demo pipeline to the Launchpad as defined in [`nf-core-demo.yml`](../seqerakit/pipelines/nf-core-demo.yml).
 
 ### YAML format description
 
@@ -52,16 +52,16 @@ The `$PIPELINE_PROFILE` variable is defined in the `env.sh` file and can be used
 
 #### 2. Pipeline YAML definition
 
-We can start by checking the YAML configuration file which defines the pipeline we will add to the workspace. The pipeline definition can be found at [`hello-world.yml`](./pipelines/hello_world.yml). Inspecting the contents here the file contains the following values:
+We can start by checking the YAML configuration file which defines the pipeline we will add to the workspace. The pipeline definition can be found at [`nf-core-demo.yml`](./pipelines/nf-core-demo.yml). Inspecting the contents here the file contains the following values:
 
 ```yaml
 pipelines:
-  - name: "nf-hello-world-test"
-    url: "https://github.com/nextflow-io/hello"
+  - name: "nf-core-demo-test"
+    url: "nf-core-demo.yml"
     workspace: '$ORGANIZATION_NAME/$WORKSPACE_NAME'
-    description: "Classic Hello World script in Nextflow language."
+    description: "nf-core/demo is a simple nf-core style bioinformatics pipeline for workshops and demos."
     compute-env: "$COMPUTE_ENV_PREFIX_fusion_nvme"
-    revision: "master"
+    revision: "dev"
     overwrite: True
 ```
 
@@ -77,16 +77,16 @@ The nested options in the YAML also correspond to options available for that par
 
 Before we add the pipeline to the Launchpad let's run `seqerakit` in dry run mode. This will print the CLI commands that will be executed by `seqerakit` without actually deploying anything to the platform.
 
-Run the following command in the root directory of this tutorial material:
+Run the following command in the 03_setup_pipelines directory of this tutorial material:
 
 ```bash
-seqerakit --dryrun ./pipelines/hello_world.yml
+seqerakit --dryrun ./pipelines/nf-core-demo.yml
 ```
 
 You should see the following output appear in the shell:
 
 ```shell
-INFO:root:DRYRUN: Running command tw pipelines add --name nf-hello-world-test --workspace $ORGANIZATION_NAME/$WORKSPACE_NAME --description 'Classic Hello World script in Nextflow language.' --compute-env aws_fusion_nvme --revision master https://github.com/nextflow-io/hello
+INFO:root:DRYRUN: Running command tw pipelines add --name nf-core-demo-test --workspace $ORGANIZATION_NAME/$WORKSPACE_NAME --description 'nf-core/demo is a simple nf-core style bioinformatics pipeline for workshops and demos.' --compute-env ${COMPUTE_ENV_PREFIX}_fusion_nvme --revision dev https://github.com/nf-core/demo
 ```
 
 This indicates seqerakit is interpreting the YAML file and is able to run some commands. Check the commands written to the console. Do they look reasonble? If so, we can proceed to the next step.
